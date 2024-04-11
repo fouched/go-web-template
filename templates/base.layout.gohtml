@@ -1,0 +1,50 @@
+{{define "base"}}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Web Template</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/go.ico">
+    <script src="/static/js/htmx-1.9.11.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/notie-4.3.1.min.css">
+    {{block "css" .}}
+
+    {{end}}
+</head>
+<body hx-boost="true">
+<h1>Go Web Template</h1>
+{{block "content" .}}
+{{end}}
+
+<script src="/static/js/notie-4.3.1.min.js"></script>
+
+{{block "js" .}}
+
+{{end}}
+
+<script>
+    function notify(msg, msgType) {
+        notie.alert({
+            type: msgType,
+            text: msg,
+        })
+    }
+
+    {{with .Success}}
+        notify("{{.}}", "success")
+    {{end}}
+
+    {{with .Warning}}
+        notify("{{.}}", "warning")
+    {{end}}
+
+    {{with .Error}}
+        notify("{{.}}", "error")
+    {{end}}
+</script>
+</body>
+</html>
+{{end}}
+
