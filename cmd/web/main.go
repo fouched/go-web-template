@@ -23,7 +23,7 @@ var app config.AppConfig
 var session *scs.SessionManager
 
 func main() {
-	dbPool, err := run()
+	dbPool, err := initApp()
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -45,7 +45,7 @@ func main() {
 	}
 }
 
-func run() (*sql.DB, error) {
+func initApp() (*sql.DB, error) {
 	dbPool, err := repo.CreateDbPool(dbString)
 	if err != nil {
 		log.Fatal("Cannot connect to database! Dying argh...")
